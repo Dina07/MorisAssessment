@@ -7,6 +7,7 @@ import Profile from "./Components/Profile";
 import Setting from "./Components/Settings";
 import Table from "./Components/Table";
 import {Card} from "react-bootstrap";
+import {isThemedColor} from "./Components/Utilis";
 
 const localRoutes = [
   {
@@ -30,14 +31,20 @@ const localRoutes = [
 
 function App() {
   const color = useSelector((state) => state.theme.value)
-  console.log('color on app', color)
+  React.useEffect(() => {
+    if (document.getElementById("sidebar")) {
+      document.getElementById("sidebar").style.backgroundColor = color;
+      document.getElementById("sidebar").style.textShadow = '2px 2px 5px #ff0000';
+    }
+  }
+    , [color])
   return (
     <Router>
       <div style={{display: "flex"}}>
-        <div className={"sidebar-" + color}>
+        <div id='sidebar' className={`sidebar sideBg${color}`}>
           <ul style={{listStyleType: "none", padding: 0}}>
-            {['home', 'profile', 'table', 'settings'].map((route) => (
-              <Card.Title>
+            {['home', 'profile', 'table', 'settings'].map((route, i) => (
+              <Card.Title key={route + i}>
                 <Link to={route} className='tCap link'>{route}</Link>
               </Card.Title>
             ))
@@ -47,22 +54,11 @@ function App() {
 
         <div style={{flex: 1, padding: "10px"}}>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return (
-
-                  <Redirect to="/home" />
-
-                )
-              }}></Route>
+            <Route exact path="/" render={() => {return (<Redirect to="/home" />)}}></Route>
             {localRoutes.map((route, index) => (
               <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                children={<route.main />}
+                key={index} path={route.path}
+                exact={route.exact} children={<route.main />}
                 render={route.main}
               />
             ))}

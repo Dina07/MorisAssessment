@@ -3,6 +3,7 @@
 import React from "react";
 import {Col, Container, Row, Card} from 'react-bootstrap';
 import {useSelector} from 'react-redux';
+import {isThemedColor} from "./Utilis";
 
 export default function Profile() {
   const color = useSelector((state) => state.theme.value)
@@ -11,7 +12,7 @@ export default function Profile() {
     <Container>
       <Row className="justify-content-center">
         <Col md="9" lg="8" xl="8" className="mt-5">
-          <Card border={color} style={{borderRadius: '15px'}}>
+          <Card border={color} style={isThemedColor(color) ? {borderRadius: '15px'} : {border: '1px solid' + color, borderRadius: '15px'}}>
             <Card.Body className="p-4">
               <div className="d-flex text-black">
                 <div className="flex-shrink-0">
@@ -19,7 +20,7 @@ export default function Profile() {
                     style={{width: '180px', borderRadius: '10px', height: "200px"}}
                     src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'
                     alt='Generic placeholder image'
-                    fluid />
+                  />
                 </div>
                 <div className="flex-grow-1 ms-3">
                   <Card.Title>D.Dhinagaran</Card.Title>
@@ -42,7 +43,7 @@ export default function Profile() {
           </Card>
         </Col>
         <Col md="9" lg="8" xl="8" style={{marginTop: 15}}>
-          <Card border={color} className="mb-4" style={{borderRadius: '15px'}}>
+          <Card border={color} className="mb-4" style={isThemedColor(color) ? {borderRadius: '15px'} : {border: '1px solid' + color, borderRadius: '15px'}}>
             <Card.Body>
 
               <Row>

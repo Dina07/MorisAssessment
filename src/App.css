@@ -1,35 +1,25 @@
-.sidebar-primary {
+.sidebar {
   padding: 10px;
   width: 15%;
-  background-color: #0B5ED7;
   height: 100vh;
-  color: white
+  color: white;
+  border-right: 1px solid black
 }
 
-/* --primary:'#0B5ED7', */
-/* --secondary:'#5C636A' */
-/* --warning:'#FFC107' */
-/* --info:'#31D2F2' */
-
-.sidebar-secondary {
-  padding: 10px;
-  width: 15%;
-  background-color: #5C636A;
-  height: 100vh
+.sideBgprimary {
+  background-color: #0B5ED7 !important;
 }
 
-.sidebar-warning {
-  padding: 10px;
-  width: 15%;
-  background-color: #FFC107;
-  height: 100vh
+.sideBgsecondary {
+  background-color: #5C636A !important;
 }
 
-.sidebar-info {
-  padding: 10px;
-  width: 15%;
-  background-color: #31D2F2;
-  height: 100vh
+.sideBgwarning {
+  background-color: #FFC107 !important;
+}
+
+.sideBginfo {
+  background-color: #31D2F2 !important;
 }
 
 .tCap {
@@ -39,6 +29,10 @@
 .pad15 {
   padding: 15px;
 
+}
+
+.txtsd {
+  text-shadow: 2px 2px 5px #ff0000;
 }
 
 .padTop15 {
@@ -55,7 +49,6 @@
 
 
 a:link, a:visited {
-  color: black;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;

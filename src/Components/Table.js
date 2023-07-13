@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Card, Table} from 'react-bootstrap';
+import {isThemedColor} from "./Utilis";
 
 export default function MyTable() {
   const color = useSelector((state) => state.theme.value)
@@ -26,9 +27,9 @@ export default function MyTable() {
   return (
     <React.Fragment>
 
-      <Card border={color} bg={color} style={{padding: '0px 15px'}}>
-        <Card.Title style={{color: 'white', fontSize: '24px', fontWeight: '500'}}>User List</Card.Title>
-        <Card.Title style={{color: 'white', fontSize: '14px', fontWeight: '300'}}>List of user in this app</Card.Title>
+      <Card border={color} bg={color} style={isThemedColor(color) ? {padding: '0px 15px'} : {padding: '0px 15px', backgroundColor: color, border: "1px solid" + color}}>
+        <Card.Title className="txtsd" style={isThemedColor(color) ? {color: 'white', fontSize: '24px', fontWeight: '500'} : {color: '#0d6efd', fontSize: '24px', fontWeight: '500'}}>User List</Card.Title>
+        <Card.Title className="txtsd" style={isThemedColor(color) ? {color: 'white', fontSize: '24px', fontWeight: '500'} : {color: '#0d6efd', fontSize: '14px', fontWeight: '300'}}>List of user in this app</Card.Title>
       </Card>
       <Table striped bordered hover style={{marginTop: 15}}>
         <thead>
@@ -42,7 +43,7 @@ export default function MyTable() {
         <tbody>
 
           {user.map((u, i) => (
-            <tr>
+            <tr key={i}>
               <td>{i + 1}</td>
               <td className='tCap'>{u.fname}</td>
               <td>{u.lname}</td>
